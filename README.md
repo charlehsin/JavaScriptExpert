@@ -26,3 +26,7 @@ This is the learning notes of Mark E. Daggett's Expert JavaScript.
    * [Bind](./Closure/Bind/)
    * [UniqueId](./Closure/UniqueId/)
    * [SingletonModulePattern](./Closure/SingletonModulePattern/)
+5. [JargonAndSlang](./JargonAndSlang/)
+   * [Coercion](./JargonAndSlang/Coercion/)
+   * [LogicalOperator](./JargonAndSlang/LogicalOperator/)
+   * [Bitwise](./JargonAndSlang/Bitwise/)
