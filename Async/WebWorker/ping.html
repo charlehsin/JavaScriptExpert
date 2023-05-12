@@ -1,0 +1,18 @@
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers -->
+<!DOCTYPE HTML>
+<html>
+
+<body>
+  <script type="text/javascript" charset="utf-8">
+    addEventListener("DOMContentLoaded", (function () {
+      worker = new Worker("pong.js");
+      worker.onmessage = function (e) {
+        console.log(e.data);
+      };
+      console.log('ping');
+      worker.postMessage();
+    }), false);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers -->
+<!-- https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame -->
+
+<html>
+
+<head>
+  <title>index</title>
+</head>
+
+<body>
+  <script type="text/javascript" charset="utf-8">
+    addEventListener("DOMContentLoaded", (function () {
+      var canvas, ctx, imageData, requestAnimationFrame, worker;
+
+      // get the correct animationFrame handler
+      requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+      window.requestAnimationFrame = requestAnimationFrame;
+
+      // add a canvas element and create a rendering context
+      canvas = document.createElement("canvas");
+      document.getElementsByTagName("body")[0].appendChild(canvas);
+      canvas.height = canvas.width = 400;
+      ctx = canvas.getContext("2d");
+      imageData = ctx.createImageData(canvas.width, canvas.height);
+
+      // create a new web worker instance
+      worker = new Worker("worker.js");
+      worker.onmessage = function (e) {
+        ctx.putImageData(e.data.pixels, 0, 0);
+
+        // once the canvas is ready for another frame request it from the worker
+        window.requestAnimationFrame(function () {
+          worker.postMessage({
+            pixels: ctx.getImageData(0, 0, canvas.width, canvas.height),
+            seed: e.data.seed
+          });
+        });
+      };
+
+      // seed the worker process.
+      worker.postMessage({
+        pixels: ctx.getImageData(0, 0, canvas.width, canvas.height),
+        seed: +new Date()
+      });
+    }), false);
+  </script>
+</body>
+
+</html>
