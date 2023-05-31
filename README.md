@@ -1,6 +1,6 @@
 # JavaScriptExpert
 
-This is the learning notes of Mark E. Daggett's Expert JavaScript.
+This is the learning notes of Mark E. Daggett's Expert JavaScript.  The book's source codes license is at https://github.com/Apress/exp-javascript/blob/master/LICENSE.txt.
 
 1. [Object](./Object/)
    * [PropertyManager](./Object/PropertyManager/)
